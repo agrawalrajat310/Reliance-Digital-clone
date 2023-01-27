@@ -15,13 +15,13 @@ const Admin = () => {
   let [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://rus-digital-televisions.onrender.com/computers")
+    fetch("https://digital-express.vercel.app/computers")
       .then((res) => res.json())
       .then((res) => setData(res));
   }, []);
 
   return (
-    <Box w={["95%", "95%", "80%"]} m="auto" mt={16}>
+    <Box w={["95%", "95%", "80%"]} m="auto" mt={48} mb= {16}>
       <Tabs size="md" variant="enclosed">
         <TabList>
           <Tab>Home</Tab>

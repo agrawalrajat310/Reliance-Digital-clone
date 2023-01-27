@@ -19,17 +19,54 @@ import {
     RadioGroup,
     Stack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import sty from "./payment.module.css";
+import swal from 'sweetalert';
+
 import immg from "./Dig_Xp.png"
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct, getCartProducts } from "../../Redux/cart/cart.action";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
     const [cardDetail, setCardDetail] = useState("");
+    const [price,setPrice] = useState(0);
+    const navigate = useNavigate();
+    const cartData = useSelector((store) => store.cartManager.data);  
+  const dispatch = useDispatch();
 
     const handlepayment = (e) => {
         setCardDetail(e);
     }
+
+    const hanleCheckout = () => {
+        swal({
+            title: "Order Placed!",
+            text: "Thanks for Purchasing from us. Your Order will be delievered within 4-5 Days.",
+            icon: "success",
+            button: "OK",
+          });
+          localStorage.setItem("finalPrice","0");
+          navigate("/")
+          handleDelete();
+
+    }
+
+    const handleDelete = ()=>{
+        for(let i=0;i<cartData.length;i++){
+            dispatch(deleteProduct(cartData[i].id))
+        }
+    }
+
+
+    useEffect(() => {
+        if (cartData.length === 0) {
+            dispatch(getCartProducts())
+        }
+        let x  = localStorage.getItem("finalPrice");
+        setPrice(x);
+    },[cartData.length,dispatch])
 
     return (
         <div className={sty.payhead}>
@@ -117,8 +154,8 @@ const Payment = () => {
                                         </Heading>
                                         <Input
                                             variant="flushed"
-                                            type="text"
-                                            placeholder="Enter State"
+                                            type="number"
+                                            placeholder="Enter Card Number"
                                         />
                                     </Box>
                                     <Box>
@@ -155,15 +192,19 @@ const Payment = () => {
                                     </Box>
                                 </Stack>
                             </CardBody>
-                        </Card> : <></>}
+                        </Card> : ""}
                         {/* ========= box 2 =========  */}
+    
                         <Button
                             size='md'
                             height='48px'
+                            type = "submit"
                             width='100%'
                             border='2px'
                             borderColor='blue.500'
-                            margin="14px 0" > Purchase </Button>
+                            margin="14px 0" 
+                            onClick={hanleCheckout}
+                            > Purchase </Button>
                         {/* ====== Button ====== */}
                     </FormControl>
                 </Box>
@@ -172,15 +213,15 @@ const Payment = () => {
                     <Box display={"grid"} gap="10px" >
                         <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} w="100%" >
                             <h3> Price </h3>
-                            <h3> ₹3000 </h3>
+                            <h3> ₹{price} </h3>
                         </Box>
                         <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} w="100%" >
                             <h3> Quantity </h3>
-                            <h3> 2 </h3>
+                            <h3> {cartData.length} </h3>
                         </Box>
                         <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} w="100%" >
                             <h3> Total Price </h3>
-                            <h3> 3000 </h3>
+                            <h3> ₹{price}</h3>
                         </Box>
                     </Box>
                 </Box>

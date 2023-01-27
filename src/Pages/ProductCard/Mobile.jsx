@@ -1,10 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { store } from "../../Redux/store";
-import React, { useEffect, useState } from "react";
-import { getPosts } from "../../Redux/Products/Product.action";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import { addItemCart } from "../../Redux/cart/cart.action";
+import React, { useEffect } from "react";
+import { getPostsMobile } from "../../Redux/Products/Product.action";
+
 import {
   Card,
   CardBody,
@@ -13,31 +11,34 @@ import {
   Button,
   Divider,
   Stack,
-
   Image,
   Badge,
-
 } from "@chakra-ui/react";
 import Filters from "./Filters/Filters";
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { BsHeart } from "react-icons/bs";
 import Carousel from "./carousel";
+import { useState } from "react";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import { addItemCart } from "../../Redux/cart/cart.action";
 import { Link } from "react-router-dom";
-
-const ProductCards = () => {
+const Mobile = () => {
   const { loading, error, data } = useSelector((store) => store.product);
 
+
+  
   const [skeletonLoading,setSkeletonLoading] = useState(true)
 
   const dispatch = useDispatch();
   //console.log(data);
   useEffect(() => {
     setTimeout(() => {
-      dispatch(getPosts());
+      dispatch(getPostsMobile());
       setSkeletonLoading(false)
     }, 5000);
    
   }, []);
+ 
 
   const sortByLH = () => {
     console.log("LH",data);
@@ -52,15 +53,13 @@ const ProductCards = () => {
    
   };
  
- 
+  
 
   return (
     <>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{  marginBottom: "20px" }}>
         <Carousel />
       </div>
-
-      <div></div>
       <div style={{ display: "flex", justifyContent:"space-around"}}>
         <div id="filters" >
           <h1
@@ -85,7 +84,7 @@ const ProductCards = () => {
             fontFamily: "sans-serif",
           }}
         >
-         Camera
+         Mobiles
         </h1>
         <span>(Showing 1-{data.length} results of total Products )</span>
           </div>
@@ -188,7 +187,7 @@ const ProductCards = () => {
         
         (<div id="productCards">
           {data.map((product) => (
-            <Link to={`cameras/${product.id}`}>
+            <Link to={`mobilesandtablets/${product.id}`}>
             <Card  variant="outline" key={product.id} id="Productcard" _hover={{boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"}}>
               <CardBody id="productBody">
                 <Image
@@ -273,7 +272,7 @@ const ProductCards = () => {
                         name="compare-btn"
                         id="compare-btn"
                       />
-                     <label>Compare</label>
+                      <label>Compare</label>
                     </Stack>
                   }
                 </Button>
@@ -292,4 +291,4 @@ const ProductCards = () => {
   );
 };
 
-export default ProductCards;
+export default Mobile;
