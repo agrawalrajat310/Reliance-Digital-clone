@@ -10,7 +10,7 @@ Visit : https://adventurous-sweater-7809.vercel.app/
 
 ## Tech Stack Used
 
-Digital Express webiste looks very amazing and introduced with various type of languages like JavaScript, HTML, CSS etc. There are the some important details regarding with this project which is mentioned below:
+Digital Xpress webiste looks very amazing and introduced with various type of languages like JavaScript, HTML, CSS etc. There are the some important details regarding with this project which is mentioned below:
 
 <ul dir="auto">
  <ol dir="auto">◉ JavaScript : 94.0%</ol>
@@ -30,7 +30,7 @@ Digital Express webiste looks very amazing and introduced with various type of l
  
  ## Admin Account Details(Admin Email and Password)
  
- <p>you can add products by admin account and all the users can see the product on latest page(which contain all the latest items)</p>
+ <p>You can add products by admin account and all the users can see the product on latest page (which contain all the latest items)</p>
  
   <ul dir="auto">
  
@@ -82,11 +82,11 @@ Cart Page have all that product which you want to buy. In Product Page you have 
 
 ## Footer
 
-As you know that every website have the header and footer. Also in this this website, we have a pritty footer which helps you to move the different kinds of the important pages.
+As you know that every website have the header and footer. Also in this this website, we have a pretty good footer which helps you to move the different kinds of the important pages.
 
 ![image](https://user-images.githubusercontent.com/97522154/214005797-8628bda3-89fc-4c73-8bfd-c9afef3a8664.png)
 
-So, this is the footer of our website clone. All the things in quite easy to use as well as mobile, teblet and desktop. We hope you like these things.
+So, this is the footer of our website clone. All the things in quite easy to use as well as mobile, tablet and desktop. We hope you like these things.
 
 ## Note
 
